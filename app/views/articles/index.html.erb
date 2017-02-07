@@ -1,0 +1,9 @@
+<h1>Liste des articles</h1>
+
+<%= link_to "Add an article", new_article_path %>
+
+<% @articles.each do |article|%>
+  <h3><%= link_to article.name, article_path(article) %></h3>
+  <p><%= raw Kramdown::Document.new(article.content).to_html %></p>
+  <p><%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" } %></p>
+<% end %>
